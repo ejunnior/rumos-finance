@@ -1,8 +1,10 @@
-﻿namespace Finance.Domain.Creditor.Aggregates.CreditorAggregate
-{
-    using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 
-    public class CreditorName : Core.ValueObject<CreditorName>
+namespace Finance.Domain.Creditor.Aggregates.CreditorAggregate
+{
+    using Core;
+
+    public class CreditorName : ValueObject<CreditorName>
     {
         private CreditorName(string value)
         {

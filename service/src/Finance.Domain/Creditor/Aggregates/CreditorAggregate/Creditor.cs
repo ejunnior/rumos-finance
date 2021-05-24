@@ -7,9 +7,9 @@
         public Creditor(CreditorName name)
 
         {
-            Name = name;
+            CreditorName = name;
         }
 
-        public CreditorName Name { get; }
+        public CreditorName CreditorName { get; }
     }
 }

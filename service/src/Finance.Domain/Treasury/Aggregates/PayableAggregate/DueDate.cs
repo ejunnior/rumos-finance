@@ -3,7 +3,9 @@ using CSharpFunctionalExtensions;
 
 namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
 {
-    public class DueDate : Core.ValueObject<DueDate>
+    using Core;
+
+    public class DueDate : ValueObject<DueDate>
     {
         private DueDate(DateTime value)
         {

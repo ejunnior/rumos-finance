@@ -1,10 +1,11 @@
 ﻿using System;
+using CSharpFunctionalExtensions;
 
 namespace Finance.Domain.Category.Aggregates.CategoryAggregate
 {
-    using CSharpFunctionalExtensions;
+    using Core;
 
-    public class CategoryName
+    public class CategoryName : ValueObject<CategoryName>
     {
         private CategoryName(string value)
         {

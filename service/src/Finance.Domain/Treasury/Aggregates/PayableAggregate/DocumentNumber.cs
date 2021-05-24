@@ -1,9 +1,11 @@
-﻿namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
-{
-    using System;
-    using CSharpFunctionalExtensions;
+﻿using System;
+using CSharpFunctionalExtensions;
 
-    public class DocumentNumber : Core.ValueObject<DocumentNumber>
+namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
+{
+    using Core;
+
+    public class DocumentNumber : ValueObject<DocumentNumber>
     {
         private DocumentNumber(string value)
         {

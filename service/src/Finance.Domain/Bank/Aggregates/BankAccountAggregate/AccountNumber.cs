@@ -1,8 +1,10 @@
-﻿namespace Finance.Domain.Bank.Aggregates.BankAccountAggregate
-{
-    using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 
-    public class AccountNumber : Core.ValueObject<AccountNumber>
+namespace Finance.Domain.Bank.Aggregates.BankAccountAggregate
+{
+    using Core;
+
+    public class AccountNumber : ValueObject<AccountNumber>
     {
         private AccountNumber(string value)
         {

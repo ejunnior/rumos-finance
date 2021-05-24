@@ -1,9 +1,11 @@
-﻿namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
+﻿using CSharpFunctionalExtensions;
+
+namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
 {
     using System;
-    using CSharpFunctionalExtensions;
+    using Core;
 
-    public class PaymentDate : Core.ValueObject<PaymentDate>
+    public class PaymentDate : ValueObject<PaymentDate>
     {
         private PaymentDate(DateTime value)
         {
