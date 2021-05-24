@@ -29,6 +29,10 @@
             DocumentNumber = documentNumber;
         }
 
+        private Payable()
+        {
+        }
+
         public Amount Amount { get; }
 
         public BankAccount BankAccount { get; }

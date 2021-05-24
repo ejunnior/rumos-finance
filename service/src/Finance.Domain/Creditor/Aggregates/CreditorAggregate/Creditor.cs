@@ -10,6 +10,10 @@
             CreditorName = name;
         }
 
+        private Creditor()
+        {
+        }
+
         public CreditorName CreditorName { get; }
     }
 }
