@@ -1,0 +1,21 @@
+﻿using System;
+using CSharpFunctionalExtensions;
+
+namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
+{
+    public class DueDate : Core.ValueObject<DueDate>
+    {
+        private DueDate(DateTime value)
+        {
+            Value = value;
+        }
+
+        public DateTime Value { get; }
+
+        public static Result<DueDate> Create(DateTime value)
+        {
+            return Result
+                .Success<DueDate>(new DueDate(value));
+        }
+    }
+}

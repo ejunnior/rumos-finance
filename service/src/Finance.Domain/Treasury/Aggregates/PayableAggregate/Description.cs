@@ -1,0 +1,35 @@
+﻿namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
+{
+    using System;
+    using CSharpFunctionalExtensions;
+
+    public class Description : Core.ValueObject<Description>
+    {
+        //Imutabilidade
+        private Description(string value)
+        {
+            Value = value;
+        }
+
+        public string Value { get; }
+
+        //Factory
+        public static Result<Description> Create(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return Result
+                    .Failure<Description>("Value is Required");
+            }
+
+            if (value.Length >= 80)
+            {
+                return Result
+                    .Failure<Description>("Value is Too Long");
+            }
+
+            return Result
+                .Success<Description>(new Description(value));
+        }
+    }
+}
