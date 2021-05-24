@@ -18,5 +18,10 @@ namespace Finance.Domain.Category.Aggregates.CategoryAggregate
             return Result
                 .Success<CategoryName>(new CategoryName(value));
         }
+
+        public static implicit operator string(CategoryName categoryName)
+        {
+            return categoryName.Value;
+        }
     }
 }
