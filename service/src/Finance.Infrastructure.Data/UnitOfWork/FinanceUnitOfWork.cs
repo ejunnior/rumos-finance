@@ -6,24 +6,26 @@
 
     public class FinanceUnitOfWork : DbContext
     {
-        public void Commit()
-        {
-            base.SaveChanges();
-        }
+        //public void Commit()
+        //{
+        //    base.SaveChanges();
+        //}
 
-        public void SetModified<TEntity>(TEntity item)
-            where TEntity : AggregateRoot
-        {
-            base.Entry<TEntity>(item)
-                .State = EntityState.Modified;
-        }
+        //public void SetModified<TEntity>(TEntity item)
+        //    where TEntity : AggregateRoot
+        //{
+        //    base.Entry<TEntity>(item)
+        //        .State = EntityState.Modified;
+        //}
 
+        //Forma de configurar a string de conexao
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Data Source=(local);Initial Catalog=Db_FinanceRumos");
         }
 
+        //Configurar as classes de mapeamento
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder

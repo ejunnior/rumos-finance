@@ -1,7 +1,6 @@
 ﻿namespace Finance.Infrastructure.Data.UnitOfWork.Mapping
 {
     using Domain.Bank.Aggregates.BankAccountAggregate;
-    using Domain.Category.Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

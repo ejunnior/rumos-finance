@@ -20,4 +20,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Finance.Domain\Finance.Domain.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Category\" />
+    <Folder Include="Creditor\Repository\" />
+  </ItemGroup>
 </Project>

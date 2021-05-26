@@ -11,6 +11,11 @@ namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
             Value = value;
         }
 
+        //Obrigatorio pelo EF
+        private Amount()
+        {
+        }
+
         public decimal Value { get; }
 
         public static Result<Amount> Create(decimal value)
@@ -23,6 +28,11 @@ namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
 
             return Result
                 .Success<Amount>(new Amount(value));
+        }
+
+        public static implicit operator decimal(Amount amount)
+        {
+            return amount.Value;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Finance.Domain.Creditor.Aggregates.CreditorAggregate
             Value = value;
         }
 
-        public string Value { get; set; }
+        public string Value { get; }
 
         // Factory
         public static Result<CreditorName> Create(string value)
@@ -29,6 +29,11 @@ namespace Finance.Domain.Creditor.Aggregates.CreditorAggregate
             }
 
             return new CreditorName(value);
+        }
+
+        public static implicit operator string(CreditorName creditorName)
+        {
+            return creditorName.Value;
         }
     }
 }

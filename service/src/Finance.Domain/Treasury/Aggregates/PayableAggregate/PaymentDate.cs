@@ -19,5 +19,10 @@ namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
             return Result
                 .Success<PaymentDate>(new PaymentDate(value));
         }
+
+        public static implicit operator DateTime(PaymentDate paymentDate)
+        {
+            return paymentDate.Value;
+        }
     }
 }

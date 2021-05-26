@@ -19,5 +19,10 @@ namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
             return Result
                 .Success<DocumentNumber>(new DocumentNumber(value));
         }
+
+        public static implicit operator string(DocumentNumber documentNumber)
+        {
+            return documentNumber.Value;
+        }
     }
 }

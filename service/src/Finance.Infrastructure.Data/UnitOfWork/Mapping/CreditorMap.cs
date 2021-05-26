@@ -1,6 +1,5 @@
 ﻿namespace Finance.Infrastructure.Data.UnitOfWork.Mapping
 {
-    using Domain.Category.Aggregates.CategoryAggregate;
     using Domain.Creditor.Aggregates.CreditorAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;

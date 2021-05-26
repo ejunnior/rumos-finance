@@ -18,5 +18,10 @@ namespace Finance.Domain.Bank.Aggregates.BankAccountAggregate
             return Result
                 .Success<AccountNumber>(new AccountNumber(value));
         }
+
+        public static implicit operator string(AccountNumber accountNumber)
+        {
+            return accountNumber.Value;
+        }
     }
 }

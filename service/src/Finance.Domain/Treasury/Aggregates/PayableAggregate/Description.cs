@@ -33,5 +33,10 @@ namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
             return Result
                 .Success<Description>(new Description(value));
         }
+
+        public static implicit operator string(Description description)
+        {
+            return description.Value;
+        }
     }
 }
