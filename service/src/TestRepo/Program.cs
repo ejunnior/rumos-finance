@@ -2,6 +2,10 @@
 
 namespace TestRepo
 {
+    using Finance.Domain.Creditor.Aggregates.CreditorAggregate;
+    using Finance.Infrastructure.Data.Creditor.Repository;
+    using Finance.Infrastructure.Data.UnitOfWork;
+
     internal class Program
     {
         private static void Main(string[] args)
@@ -10,9 +14,26 @@ namespace TestRepo
 
             var input = Console.ReadLine();
 
-            //Aplicar o dominio
+            var creditorName = CreditorName.Create(input);
 
-            //Chamar o repositorio
+            if (creditorName.IsSuccess)
+            {
+                var creditor = new Creditor(creditorName.Value);
+
+                var unitOfWork = new FinanceUnitOfWork();
+
+                var creditorRepo = new CreditorRepository(unitOfWork);
+
+                creditorRepo.Add(creditor);
+
+                unitOfWork.Commit();
+            }
+            else
+            {
+                Console.WriteLine(creditorName.Error);
+            }
+
+            Console.ReadKey();
         }
     }
 }

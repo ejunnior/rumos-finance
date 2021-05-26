@@ -23,6 +23,5 @@
 
   <ItemGroup>
     <Folder Include="Category\" />
-    <Folder Include="Creditor\Repository\" />
   </ItemGroup>
 </Project>
