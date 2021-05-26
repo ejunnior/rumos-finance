@@ -6,17 +6,17 @@
 
     public class FinanceUnitOfWork : DbContext
     {
-        //public void Commit()
-        //{
-        //    base.SaveChanges();
-        //}
+        public void Commit()
+        {
+            base.SaveChanges();
+        }
 
-        //public void SetModified<TEntity>(TEntity item)
-        //    where TEntity : AggregateRoot
-        //{
-        //    base.Entry<TEntity>(item)
-        //        .State = EntityState.Modified;
-        //}
+        public void SetModified<TEntity>(TEntity item)
+            where TEntity : AggregateRoot
+        {
+            base.Entry<TEntity>(item)
+                .State = EntityState.Modified;
+        }
 
         //Forma de configurar a string de conexao
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
