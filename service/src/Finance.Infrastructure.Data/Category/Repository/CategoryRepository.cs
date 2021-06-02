@@ -1,4 +1,4 @@
-﻿namespace Finance.Infrastructure.Data.Category
+﻿namespace Finance.Infrastructure.Data.Category.Repository
 {
     using Domain.Category.Aggregates.CategoryAggregate;
     using UnitOfWork;

@@ -1,5 +1,6 @@
 ﻿namespace Finance.Infrastructure.Data
 {
+    using System.Threading.Tasks;
     using Domain.Core;
     using UnitOfWork;
 
@@ -28,6 +29,17 @@
             {
                 return _unitOfWork
                     .Set<TEntity>().Find(id);
+            }
+
+            return null;
+        }
+
+        public async Task<TEntity> GetAsync(int id)
+        {
+            if (id != default)
+            {
+                return await _unitOfWork
+                    .Set<TEntity>().FindAsync(id);
             }
 
             return null;

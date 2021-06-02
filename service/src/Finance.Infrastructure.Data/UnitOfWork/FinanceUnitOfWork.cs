@@ -1,5 +1,6 @@
 ﻿namespace Finance.Infrastructure.Data.UnitOfWork
 {
+    using System.Threading.Tasks;
     using Domain.Core;
     using Mapping;
     using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,12 @@
         public void Commit()
         {
             base.SaveChanges();
+        }
+
+        public async Task CommitAsync()
+        {
+            await base
+                .SaveChangesAsync();
         }
 
         public void SetModified<TEntity>(TEntity item)

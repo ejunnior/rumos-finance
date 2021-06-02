@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Domain.Core", "Fina
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Infrastructure.Data", "Finance.Infrastructure.Data\Finance.Infrastructure.Data.csproj", "{2B2603EA-35A2-481D-BEDA-47139AEC7392}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRepo", "TestRepo\TestRepo.csproj", "{73A35BCA-3F9F-40C6-8173-A322AF4818C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRepo", "TestRepo\TestRepo.csproj", "{73A35BCA-3F9F-40C6-8173-A322AF4818C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Api", "Finance.Api\Finance.Api.csproj", "{3C2242BD-0A05-4B86-A263-D39FDA671620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Api", "Finance.Api\Finance.Api.csproj", "{3C2242BD-0A05-4B86-A263-D39FDA671620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Application", "Finance.Application\Finance.Application.csproj", "{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3C2242BD-0A05-4B86-A263-D39FDA671620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C2242BD-0A05-4B86-A263-D39FDA671620}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C2242BD-0A05-4B86-A263-D39FDA671620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
