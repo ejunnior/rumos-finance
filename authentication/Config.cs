@@ -75,7 +75,7 @@
                 {
                     SubjectId = "035929E0-E622-4A9E-A5C3-AAD900DCAE11", //Should be unique at the IDP
                     Username = "ejunnior@gmail.com",
-                    Password = "Edujuluserdi110880#",
+                    Password = "Pa$$w0rd",
                     Claims = new List<Claim>
                     {
                         new Claim("given_name", "Edvaldo"),
