@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Domain.Core", "Fina
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Infrastructure.Data", "Finance.Infrastructure.Data\Finance.Infrastructure.Data.csproj", "{2B2603EA-35A2-481D-BEDA-47139AEC7392}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRepo", "TestRepo\TestRepo.csproj", "{73A35BCA-3F9F-40C6-8173-A322AF4818C3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Api", "Finance.Api\Finance.Api.csproj", "{3C2242BD-0A05-4B86-A263-D39FDA671620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Application", "Finance.Application\Finance.Application.csproj", "{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Application", "Finance.Application\Finance.Application.csproj", "{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Infrastructure.Data.Core", "Finance.Infrastructure.Data.Core\Finance.Infrastructure.Data.Core.csproj", "{8B62B4B0-2F70-4158-8747-CA023F05CDDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Idp", "..\..\authentication\Idp.csproj", "{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +35,6 @@ Global
 		{2B2603EA-35A2-481D-BEDA-47139AEC7392}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B2603EA-35A2-481D-BEDA-47139AEC7392}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B2603EA-35A2-481D-BEDA-47139AEC7392}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73A35BCA-3F9F-40C6-8173-A322AF4818C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73A35BCA-3F9F-40C6-8173-A322AF4818C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73A35BCA-3F9F-40C6-8173-A322AF4818C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73A35BCA-3F9F-40C6-8173-A322AF4818C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C2242BD-0A05-4B86-A263-D39FDA671620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3C2242BD-0A05-4B86-A263-D39FDA671620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C2242BD-0A05-4B86-A263-D39FDA671620}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +43,14 @@ Global
 		{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B62B4B0-2F70-4158-8747-CA023F05CDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B62B4B0-2F70-4158-8747-CA023F05CDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B62B4B0-2F70-4158-8747-CA023F05CDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B62B4B0-2F70-4158-8747-CA023F05CDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

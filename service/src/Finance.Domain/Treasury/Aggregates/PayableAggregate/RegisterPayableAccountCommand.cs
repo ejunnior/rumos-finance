@@ -1,8 +1,9 @@
-﻿using System;
-
-namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
+﻿namespace Finance.Domain.Treasury.Aggregates.PayableAggregate
 {
-    public class RegisterPayableAccountCommand
+    using Core;
+    using System;
+
+    public class RegisterPayableAccountCommand : ICommand
     {
         public RegisterPayableAccountCommand(
             DateTime paymentDate,

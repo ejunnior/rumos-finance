@@ -1,18 +1,27 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Finance.Api
 {
+    using Application.Bank;
+    using Application.Category;
+    using Application.Creditor;
+    using Application.Treasury;
+    using Domain.Bank.Aggregates.BankAccountAggregate;
+    using Domain.Category.Aggregates.CategoryAggregate;
+    using Domain.Creditor.Aggregates.CreditorAggregate;
+    using Domain.Treasury.Aggregates.PayableAggregate;
+    using IdentityServer4.AccessTokenValidation;
+    using Infrastructure.Data.BankAccount.Repository;
+    using Infrastructure.Data.Category.Repository;
+    using Infrastructure.Data.Creditor.Repository;
+    using Infrastructure.Data.Payable.Repository;
+    using Infrastructure.Data.UnitOfWork;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -21,17 +30,6 @@ namespace Finance.Api
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Finance.Api", Version = "v1" });
-            });
-        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,11 +43,52 @@ namespace Finance.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+        }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddScoped<IFinanceUnitOfWork, FinanceUnitOfWork>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+            services.AddScoped<ICreditorRepository, CreditorRepository>();
+            services.AddScoped<IPayableRepository, PayableRepository>();
+            services.AddScoped<IRegisterBankAccountHandler, RegisterBankAccountHandler>();
+            services.AddScoped<IEditBankAccountHandler, EditBankAccountHandler>();
+            services.AddScoped<IDeleteBankAccountHandler, DeleteBankAccountHandler>();
+            services.AddScoped<IRegisterCategoryHandler, RegisterCategoryHandler>();
+            services.AddScoped<IEditCategoryHandler, EditCategoryHandler>();
+            services.AddScoped<IDeleteCategoryHandler, DeleteCategoryHandler>();
+            services.AddScoped<IRegisterCreditorHandler, RegisterCreditorHandler>();
+            services.AddScoped<IDeleteCreditorHandler, DeleteCreditorHandler>();
+            services.AddScoped<IEditCreditorHandler, EditCreditorHandler>();
+            services.AddScoped<IRegisterPayableAccountHandler, RegisterPayableAccountHandler>();
+            services.AddScoped<IEditPayableAccountHandler, EditPayableAccountHandler>();
+            services.AddScoped<IDeletePayableAccountHandler, DeletePayableAccountHandler>();
+            services.AddScoped<IGetCreditorByIdHandler, GetCreditorByIdHandler>();
+            services.AddScoped<IGetCategoryByIdHandler, GetCategoryByIdHandler>();
+            services.AddScoped<IGetPayableAccountByIdHandler, GetPayableAccountByIdHandler>();
+            services.AddScoped<IGetBankAccountByIdHandler, GetBankAccountByIdHandler>();
+
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(
+                    options =>
+                    {
+                        options.Authority = "https://localhost:44315/";
+                        options.ApiName = "financeapi";
+                    });
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Finance.Api", Version = "v1" });
             });
         }
     }

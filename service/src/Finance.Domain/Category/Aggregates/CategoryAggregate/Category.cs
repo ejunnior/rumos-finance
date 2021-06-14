@@ -9,6 +9,11 @@
             CategoryName = categoryName;
         }
 
-        public CategoryName CategoryName { get; }
+        public CategoryName CategoryName { get; private set; }
+
+        public void Edit(CategoryName categoryName)
+        {
+            CategoryName = categoryName;
+        }
     }
 }

@@ -1,41 +1,55 @@
 ﻿namespace Finance.Application.Treasury
 {
-    using System.Threading.Tasks;
-    using Domain.Creditor.Aggregates.CreditorAggregate;
     using Domain.Treasury.Aggregates.PayableAggregate;
     using Infrastructure.Data.BankAccount.Repository;
     using Infrastructure.Data.Category.Repository;
     using Infrastructure.Data.Creditor.Repository;
     using Infrastructure.Data.Payable.Repository;
     using Infrastructure.Data.UnitOfWork;
+    using System.Threading.Tasks;
+    using Domain.Bank.Aggregates.BankAccountAggregate;
+    using Domain.Category.Aggregates.CategoryAggregate;
+    using Domain.Creditor.Aggregates.CreditorAggregate;
 
-    public class RegisterPayableAccountHandler
+    public class RegisterPayableAccountHandler : IRegisterPayableAccountHandler
     {
-        public async Task HandlerAsync(RegisterPayableAccountCommand command)
+        private readonly IBankAccountRepository _bankAccountRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICreditorRepository _creditorRepository;
+        private readonly IPayableRepository _payableRepository;
+        private readonly IFinanceUnitOfWork _unitOfWork;
+
+        public RegisterPayableAccountHandler(
+            IFinanceUnitOfWork unitOfWork,
+            ICreditorRepository creditorRepository,
+            IBankAccountRepository bankAccountRepository,
+            ICategoryRepository categoryRepository,
+            IPayableRepository payableRepository)
         {
-            var unitOfWork = new FinanceUnitOfWork();
+            _unitOfWork = unitOfWork;
+            _creditorRepository = creditorRepository;
+            _bankAccountRepository = bankAccountRepository;
+            _categoryRepository = categoryRepository;
+            _payableRepository = payableRepository;
+        }
 
-            var repository = new PayableRepository(unitOfWork);
+        public async Task HandleAsync(RegisterPayableAccountCommand args)
+        {
+            var amount = Amount.Create(args.Amount);
+            var dueDate = DueDate.Create(args.DueDate);
+            var description = Description.Create(args.Description);
+            var documentDate = DocumentDate.Create(args.DocumentDate);
+            var documentNumber = DocumentNumber.Create(args.DocumentNumber);
+            var paymentDate = PaymentDate.Create(args.PaymentDate);
 
-            var amount = Amount.Create(command.Amount);
-            var dueDate = DueDate.Create(command.DueDate);
-            var description = Description.Create(command.Description);
-            var documentDate = DocumentDate.Create(command.DocumentDate);
-            var documentNumber = DocumentNumber.Create(command.DocumentNumber);
-            var paymentDate = PaymentDate.Create(command.PaymentDate);
+            var creditor = await _creditorRepository
+                .GetAsync(args.CreditorId);
 
-            var creditorRepository = new CreditorRepository(unitOfWork);
-            var bankAccountRepository = new BankAccountRepository(unitOfWork);
-            var categoryRepository = new CategoryRepository(unitOfWork);
+            var bankAccount = await _bankAccountRepository
+                .GetAsync(args.BankAccountId);
 
-            var creditor = await creditorRepository
-                .GetAsync(command.CreditorId);
-
-            var bankAccount = await bankAccountRepository
-                .GetAsync(command.BankAccountId);
-
-            var category = await categoryRepository
-                .GetAsync(command.CategoryId);
+            var category = await _categoryRepository
+                .GetAsync(args.CategoryId);
 
             var payable = new Payable(
                 amount: amount.Value,
@@ -48,10 +62,10 @@
                 category: category,
                 paymentDate: paymentDate.Value);
 
-            repository
+            _payableRepository
                 .Add(payable);
 
-            await unitOfWork
+            await _unitOfWork
                 .CommitAsync();
         }
     }

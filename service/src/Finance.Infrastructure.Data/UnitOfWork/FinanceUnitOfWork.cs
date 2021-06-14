@@ -5,17 +5,19 @@
     using Mapping;
     using Microsoft.EntityFrameworkCore;
 
-    public class FinanceUnitOfWork : DbContext
+    public class FinanceUnitOfWork : DbContext, IFinanceUnitOfWork
     {
-        public void Commit()
-        {
-            base.SaveChanges();
-        }
-
         public async Task CommitAsync()
         {
             await base
                 .SaveChangesAsync();
+        }
+
+        public DbSet<TEntity> CreateSet<TEntity>()
+            where TEntity : AggregateRoot
+        {
+            return base
+                .Set<TEntity>();
         }
 
         public void SetModified<TEntity>(TEntity item)

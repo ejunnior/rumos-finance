@@ -9,6 +9,11 @@
             AccountNumber = accountNumber;
         }
 
-        public AccountNumber AccountNumber { get; }
+        public AccountNumber AccountNumber { get; private set; }
+
+        public void Edit(AccountNumber accountNumber)
+        {
+            AccountNumber = accountNumber;
+        }
     }
 }

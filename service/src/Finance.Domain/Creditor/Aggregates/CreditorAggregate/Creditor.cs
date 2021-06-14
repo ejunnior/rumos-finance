@@ -14,6 +14,11 @@
         {
         }
 
-        public CreditorName CreditorName { get; }
+        public CreditorName CreditorName { get; private set; }
+
+        public void Edit(CreditorName creditorName)
+        {
+            CreditorName = creditorName;
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace TestRepo
 
                 creditorRepo.Add(creditor);
 
-                unitOfWork.Commit();
+                unitOfWork.CommitAsync();
             }
             else
             {
