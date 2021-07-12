@@ -7,24 +7,27 @@
     using Microsoft.AspNetCore.Authorization;
 
     [Produces("application/json")]
-    [Authorize]
     public class CreditorController : BaseController
     {
         private readonly IDeleteCreditorHandler _deleteHandler;
         private readonly IEditCreditorHandler _editHandler;
-        private readonly IGetCreditorByIdHandler _queryHandler;
+        private readonly IGetCreditorByIdHandler _getCreditorByIdHandler;
+        private readonly IGetCreditorHandler _getCreditorHandler;
         private readonly IRegisterCreditorHandler _registerHandler;
 
         public CreditorController(
             IRegisterCreditorHandler registerHandler,
             IDeleteCreditorHandler deleteHandler,
             IEditCreditorHandler editHandler,
-            IGetCreditorByIdHandler queryHandler)
+            IGetCreditorByIdHandler getCreditorByIdHandler,
+            IGetCreditorHandler getCreditorHandler)
         {
             _registerHandler = registerHandler;
             _deleteHandler = deleteHandler;
             _editHandler = editHandler;
-            _queryHandler = queryHandler;
+            _getCreditorByIdHandler = getCreditorByIdHandler;
+            _getCreditorHandler = getCreditorHandler;
+            _getCreditorByIdHandler = getCreditorByIdHandler;
             _registerHandler = registerHandler;
             _deleteHandler = deleteHandler;
             _editHandler = editHandler;
@@ -57,6 +60,24 @@
             return Ok();
         }
 
+        [HttpGet()]
+        public async Task<IActionResult> GetCreditor()
+        {
+            var query = new GetCreditorQuery();
+
+            var result = await _getCreditorHandler
+                .HandleAsync(query);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCreditorById(int id)
         {
@@ -65,7 +86,7 @@
                 Id = id
             };
 
-            var result = await _queryHandler
+            var result = await _getCreditorByIdHandler
                 .HandleAsync(query);
 
             if (result == null)

@@ -85,6 +85,7 @@ namespace Finance.Api
             services.AddScoped<IGetPayableAccountByIdHandler, GetPayableAccountByIdHandler>();
             services.AddScoped<IGetBankAccountByIdHandler, GetBankAccountByIdHandler>();
             services.AddScoped<IGetPayableAccountHandler, GetPayableAccountHandler>();
+            services.AddScoped<IGetCreditorHandler, GetCreditorHandler>();
 
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(
