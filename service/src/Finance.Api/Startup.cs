@@ -46,6 +46,14 @@ namespace Finance.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseCors(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -76,6 +84,7 @@ namespace Finance.Api
             services.AddScoped<IGetCategoryByIdHandler, GetCategoryByIdHandler>();
             services.AddScoped<IGetPayableAccountByIdHandler, GetPayableAccountByIdHandler>();
             services.AddScoped<IGetBankAccountByIdHandler, GetBankAccountByIdHandler>();
+            services.AddScoped<IGetPayableAccountHandler, GetPayableAccountHandler>();
 
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(
@@ -90,6 +99,8 @@ namespace Finance.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Finance.Api", Version = "v1" });
             });
+
+            services.AddCors();
         }
     }
 }

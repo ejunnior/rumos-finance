@@ -1,5 +1,6 @@
 ﻿namespace Finance.Domain.Core
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IRepository<TEntity>
@@ -8,6 +9,8 @@
         void Add(TEntity item);
 
         void Delete(TEntity item);
+
+        IEnumerable<TEntity> GetAll();
 
         Task<TEntity> GetAsync(int id);
 

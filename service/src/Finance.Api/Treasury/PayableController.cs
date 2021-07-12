@@ -7,24 +7,26 @@
     using Microsoft.AspNetCore.Authorization;
 
     [Produces("application/json")]
-    [Authorize]
     public class PayableController : BaseController
     {
         private readonly IDeletePayableAccountHandler _deleteHandler;
         private readonly IEditPayableAccountHandler _editHandler;
-        private readonly IGetPayableAccountByIdHandler _queryHandler;
+        private readonly IGetPayableAccountByIdHandler _payableAccountByIdHandler;
+        private readonly IGetPayableAccountHandler _payableAccountHandler;
         private readonly IRegisterPayableAccountHandler _registerHandler;
 
         public PayableController(
             IRegisterPayableAccountHandler registerHandler,
             IEditPayableAccountHandler editHandler,
             IDeletePayableAccountHandler deleteHandler,
-            IGetPayableAccountByIdHandler queryHandler)
+            IGetPayableAccountByIdHandler payableAccountByIdHandler,
+            IGetPayableAccountHandler payableAccountHandler)
         {
             _registerHandler = registerHandler;
             _editHandler = editHandler;
             _deleteHandler = deleteHandler;
-            _queryHandler = queryHandler;
+            _payableAccountByIdHandler = payableAccountByIdHandler;
+            _payableAccountHandler = payableAccountHandler;
         }
 
         [HttpDelete("{id}")]
@@ -61,6 +63,24 @@
             return Ok();
         }
 
+        [HttpGet()]
+        public async Task<IActionResult> GetPayableAccount()
+        {
+            var query = new GetPayableAccountQuery();
+
+            var result = await _payableAccountHandler
+                .HandleAsync(query);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPayableAccountById(int id)
         {
@@ -69,7 +89,7 @@
                 Id = id
             };
 
-            var result = await _queryHandler
+            var result = await _payableAccountByIdHandler
                 .HandleAsync(query);
 
             if (result == null)

@@ -1,5 +1,7 @@
 ﻿namespace Finance.Infrastructure.Data.Core
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Domain.Core;
     using Microsoft.EntityFrameworkCore;
@@ -30,6 +32,11 @@
                 GetSet()
                     .Remove(item);
             }
+        }
+
+        public IEnumerable<TEntity> GetAll()
+        {
+            return GetSet().AsEnumerable();
         }
 
         public async Task<TEntity> GetAsync(int id)
