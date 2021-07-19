@@ -5,6 +5,6 @@
     public class EditCreditorDto
     {
         [Required]
-        public string CreditorName { get; set; }
+        public string Name { get; set; }
     }
 }

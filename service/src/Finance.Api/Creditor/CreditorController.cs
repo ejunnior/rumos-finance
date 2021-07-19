@@ -52,7 +52,7 @@
         {
             var command = new EditCreditorCommand(
                 id: id,
-                creditorName: dto.CreditorName);
+                creditorName: dto.Name);
 
             await _editHandler
                 .HandleAsync(command);
@@ -110,7 +110,7 @@
             }
 
             var command =
-                new RegisterCreditorCommand(dto.CreditorName);
+                new RegisterCreditorCommand(dto.Name);
 
             await _registerHandler
                 .HandleAsync(command);
