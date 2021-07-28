@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
 
     [Produces("application/json")]
+    [Authorize]
     public class PayableController : BaseController
     {
         private readonly IDeletePayableAccountHandler _deleteHandler;

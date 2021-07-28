@@ -1,12 +1,13 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-
 namespace Finance.Api
 {
+    using System;
+    using System.Security.Claims;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
     using Application.Bank;
     using Application.Category;
     using Application.Creditor;
@@ -15,12 +16,13 @@ namespace Finance.Api
     using Domain.Category.Aggregates.CategoryAggregate;
     using Domain.Creditor.Aggregates.CreditorAggregate;
     using Domain.Treasury.Aggregates.PayableAggregate;
-    using IdentityServer4.AccessTokenValidation;
     using Infrastructure.Data.BankAccount.Repository;
     using Infrastructure.Data.Category.Repository;
     using Infrastructure.Data.Creditor.Repository;
     using Infrastructure.Data.Payable.Repository;
     using Infrastructure.Data.UnitOfWork;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.IdentityModel.Tokens;
 
     public class Startup
     {
@@ -87,13 +89,19 @@ namespace Finance.Api
             services.AddScoped<IGetPayableAccountHandler, GetPayableAccountHandler>();
             services.AddScoped<IGetCreditorHandler, GetCreditorHandler>();
 
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(
-                    options =>
-                    {
-                        options.Authority = "https://localhost:44315/";
-                        options.ApiName = "financeapi";
-                    });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://finance-dev.eu.auth0.com/";
+                options.Audience = "https://localhost:44384/";
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = ClaimTypes.NameIdentifier
+                };
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Produces("application/json")]
-    //[Authorize]
+    [Authorize]
     public class CategoryController : BaseController
     {
         private readonly IDeleteCategoryHandler _deleteHandler;
