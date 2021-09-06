@@ -13,9 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Api", "Finance.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Application", "Finance.Application\Finance.Application.csproj", "{F7EB7061-75CF-4B0D-8DF0-17E5A0591ED1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Infrastructure.Data.Core", "Finance.Infrastructure.Data.Core\Finance.Infrastructure.Data.Core.csproj", "{8B62B4B0-2F70-4158-8747-CA023F05CDDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Infrastructure.Data.Core", "Finance.Infrastructure.Data.Core\Finance.Infrastructure.Data.Core.csproj", "{8B62B4B0-2F70-4158-8747-CA023F05CDDD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Idp", "..\..\authentication\Idp.csproj", "{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Testes", "Finance.Testes\Finance.Testes.csproj", "{E950B538-7922-452B-BDCE-0EB47F1CDF9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Tests", "Finance.Tests\Finance.Tests.csproj", "{DF808E40-9B4C-4985-9CA9-2A2AA1814624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3734A86-4555-4DC5-98BE-ABC3B7DF8F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E950B538-7922-452B-BDCE-0EB47F1CDF9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E950B538-7922-452B-BDCE-0EB47F1CDF9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E950B538-7922-452B-BDCE-0EB47F1CDF9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E950B538-7922-452B-BDCE-0EB47F1CDF9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF808E40-9B4C-4985-9CA9-2A2AA1814624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF808E40-9B4C-4985-9CA9-2A2AA1814624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF808E40-9B4C-4985-9CA9-2A2AA1814624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF808E40-9B4C-4985-9CA9-2A2AA1814624}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
