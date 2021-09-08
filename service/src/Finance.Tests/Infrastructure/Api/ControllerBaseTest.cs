@@ -1,14 +1,11 @@
-﻿using Finance.Tests.Infrastructure;
+﻿using System;
+using System.Collections.Specialized;
+using System.Net.Http;
+using Restaurant.Tests.Infrastructure.Api;
+using Xunit;
 
-namespace Restaurant.Tests.Infrastructure.Api
+namespace Finance.Tests.Infrastructure.Api
 {
-    using System;
-    using System.Collections.Specialized;
-    using System.Net.Http;
-    using Infrastructure;
-    using Microsoft.Data.SqlClient;
-    using Xunit;
-
     [Collection(FixtureBaseCollection.Name)]
     public class ControllerBaseTest<TFixture>
         where TFixture : FixtureBase

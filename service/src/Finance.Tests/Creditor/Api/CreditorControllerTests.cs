@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text;
 using Finance.Application.Creditor;
+using Finance.Tests.Infrastructure.Api;
 using Newtonsoft.Json;
 
 namespace Finance.Tests.Creditor.Api
