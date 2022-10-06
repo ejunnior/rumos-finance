@@ -16,17 +16,20 @@
         private readonly IEditCategoryHandler _editHandler;
         private readonly IGetCategoryByIdHandler _queryHandler;
         private readonly IRegisterCategoryHandler _registerHandler;
+        private readonly IGetCategoryHandler _getCategoryHandler;
 
         public CategoryController(
             IRegisterCategoryHandler registerHandler,
             IDeleteCategoryHandler deleteHandler,
             IEditCategoryHandler editHandler,
-            IGetCategoryByIdHandler queryHandler)
+            IGetCategoryByIdHandler queryHandler,
+            IGetCategoryHandler getCategoryHandler)
         {
             _registerHandler = registerHandler;
             _deleteHandler = deleteHandler;
             _editHandler = editHandler;
             _queryHandler = queryHandler;
+            _getCategoryHandler= getCategoryHandler;
         }
 
         [HttpDelete("{id}")]
@@ -94,5 +97,24 @@
 
             return Ok();
         }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetCategory()
+        {
+            var query = new GetCategoryQuery();
+
+            var result = await _getCategoryHandler
+                .HandleAsync(query);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+
     }
 }
