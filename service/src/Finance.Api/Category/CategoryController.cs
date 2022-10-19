@@ -9,27 +9,26 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Produces("application/json")]
-    //[Authorize]
     public class CategoryController : BaseController
     {
         private readonly IDeleteCategoryHandler _deleteHandler;
         private readonly IEditCategoryHandler _editHandler;
+        private readonly IGetCategoryHandler _getCategoryHandler;
         private readonly IGetCategoryByIdHandler _queryHandler;
         private readonly IRegisterCategoryHandler _registerHandler;
-        private readonly IGetBankAccountHandler _getCategoryHandler;
 
         public CategoryController(
             IRegisterCategoryHandler registerHandler,
             IDeleteCategoryHandler deleteHandler,
             IEditCategoryHandler editHandler,
             IGetCategoryByIdHandler queryHandler,
-            IGetBankAccountHandler getCategoryHandler)
+            IGetCategoryHandler getCategoryHandler)
         {
             _registerHandler = registerHandler;
             _deleteHandler = deleteHandler;
             _editHandler = editHandler;
             _queryHandler = queryHandler;
-            _getCategoryHandler= getCategoryHandler;
+            _getCategoryHandler = getCategoryHandler;
         }
 
         [HttpDelete("{id}")]
@@ -56,6 +55,24 @@
                 .HandleAsync(command);
 
             return Ok();
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetCategory()
+        {
+            var query = new GetCategoryQuery();
+
+            var result = await _getCategoryHandler
+                .HandleAsync(query);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
         }
 
         [HttpGet("{id}")]
@@ -97,24 +114,5 @@
 
             return Ok();
         }
-
-        [HttpGet()]
-        public async Task<IActionResult> GetCategory()
-        {
-            var query = new GetBankAccountQuery();
-
-            var result = await _getCategoryHandler
-                .HandleAsync(query);
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(result);
-            }
-        }
-
     }
 }
