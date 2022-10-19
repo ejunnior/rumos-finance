@@ -16,14 +16,14 @@
         private readonly IEditCategoryHandler _editHandler;
         private readonly IGetCategoryByIdHandler _queryHandler;
         private readonly IRegisterCategoryHandler _registerHandler;
-        private readonly IGetCategoryHandler _getCategoryHandler;
+        private readonly IGetBankAccountHandler _getCategoryHandler;
 
         public CategoryController(
             IRegisterCategoryHandler registerHandler,
             IDeleteCategoryHandler deleteHandler,
             IEditCategoryHandler editHandler,
             IGetCategoryByIdHandler queryHandler,
-            IGetCategoryHandler getCategoryHandler)
+            IGetBankAccountHandler getCategoryHandler)
         {
             _registerHandler = registerHandler;
             _deleteHandler = deleteHandler;
@@ -101,7 +101,7 @@
         [HttpGet()]
         public async Task<IActionResult> GetCategory()
         {
-            var query = new GetCategoryQuery();
+            var query = new GetBankAccountQuery();
 
             var result = await _getCategoryHandler
                 .HandleAsync(query);

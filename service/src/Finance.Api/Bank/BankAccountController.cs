@@ -7,9 +7,9 @@
     using Microsoft.AspNetCore.Authorization;
 
     [Produces("application/json")]
-    //[Authorize]
     public class BankAccountController : BaseController
     {
+        private readonly IGetBankAccountHandler _bankAccountQueryHanlder;
         private readonly IDeleteBankAccountHandler _deleteHandler;
         private readonly IEditBankAccountHandler _editHandler;
         private readonly IGetBankAccountByIdHandler _queryHandler;
@@ -19,12 +19,14 @@
             IRegisterBankAccountHandler registerHandler,
             IDeleteBankAccountHandler deleteHandler,
             IEditBankAccountHandler editHandler,
-            IGetBankAccountByIdHandler queryHandler)
+            IGetBankAccountByIdHandler queryHandler,
+            IGetBankAccountHandler bankAccountQueryHanlder)
         {
             _registerHandler = registerHandler;
             _deleteHandler = deleteHandler;
             _editHandler = editHandler;
             _queryHandler = queryHandler;
+            _bankAccountQueryHanlder = bankAccountQueryHanlder;
         }
 
         [HttpDelete("{id}")]
@@ -51,6 +53,24 @@
                 .HandleAsync(command);
 
             return Ok();
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetBankAccount()
+        {
+            var query = new GetBankAccountQuery();
+
+            var result = await _bankAccountQueryHanlder
+                .HandleAsync(query);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
         }
 
         [HttpGet("{id}")]
